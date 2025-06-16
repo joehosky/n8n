@@ -1,0 +1,952 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+  <head>
+    <meta charset="UTF-8" />
+    <title>n8n 應用型收費網站 - Wireframe</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <style>
+      body {
+        font-family: "Noto Sans TC", Arial, sans-serif;
+        margin: 0;
+        background: #f8f9fb;
+        color: #212529;
+        transition: background 0.2s, color 0.2s;
+      }
+
+      /* Header & Nav */
+      header {
+        background: #22223b;
+        color: #fff;
+        padding: 18px 0;
+      }
+      nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        max-width: 1200px;
+        margin: auto;
+      }
+      nav ul {
+        list-style: none;
+        display: flex;
+        gap: 30px;
+        margin: 0;
+        padding: 0;
+      }
+      nav li {
+        font-weight: 500;
+      }
+      nav a {
+        color: #fff;
+        text-decoration: none;
+      }
+      .cta-btn {
+        background: #3a86ff;
+        color: #fff;
+        padding: 10px 24px;
+        border: none;
+        border-radius: 6px;
+        font-weight: bold;
+        margin-left: 20px;
+        cursor: pointer;
+      }
+
+      /* 通用區塊 */
+      .section {
+        max-width: 1200px;
+        margin: 40px auto;
+        background: #fff;
+        border-radius: 12px;
+        box-shadow: 0 4px 20px #0001;
+        padding: 32px;
+      }
+      .section-title {
+        font-size: 1.6em;
+        font-weight: bold;
+        margin-bottom: 20px;
+      }
+
+      /* Flex 區塊 */
+      .features,
+      .painpoints,
+      .memberships,
+      .ai-section,
+      .integrations,
+      .faq {
+        display: flex;
+        gap: 24px;
+        flex-wrap: wrap;
+      }
+
+      /* 卡片 */
+      .card {
+        background: #f5f7fa;
+        border-radius: 8px;
+        padding: 24px;
+        flex: 1 1 220px;
+        min-width: 220px;
+      }
+      .template-card {
+        background: #e9ecef;
+      }
+      .pricing-card {
+        border: 2px solid #ffd60a;
+        background: #fffbe8;
+      }
+      .integrations .card {
+        min-width: 160px;
+      }
+      .section + .section {
+        margin-top: 24px;
+      }
+      footer {
+        background: #4a4e69;
+        color: #fff;
+        text-align: center;
+        padding: 24px 0;
+        margin-top: 48px;
+      }
+      .cta-row {
+        margin-top: 24px;
+      }
+      .nav-actions {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+      .lang-switch,
+      .theme-switch {
+        padding: 7px 10px;
+        border-radius: 6px;
+        border: 1px solid #eee;
+        margin-left: 6px;
+        background: #fff;
+        color: #222;
+        font-weight: 500;
+        cursor: pointer;
+      }
+      .theme-switch {
+        background: #ffd60a;
+        color: #333;
+      }
+      .lang-switch {
+        background: #fff;
+        color: #222;
+      }
+
+      /* ========== 暗色模式 ========== */
+      body.dark-mode {
+        background: #17181c;
+        color: #e1e1e9;
+      }
+      body.dark-mode .section {
+        background: #22223b;
+        color: #fff;
+      }
+      body.dark-mode .card {
+        background: #282b3b;
+        color: #fff;
+      }
+      body.dark-mode .template-card {
+        background: #1e2131;
+      }
+      body.dark-mode .pricing-card {
+        background: #232330;
+        border-color: #ffd60a;
+        color: #fff;
+      }
+      body.dark-mode input,
+      body.dark-mode select {
+        background: #232330;
+        color: #fff;
+        border: 1px solid #444;
+      }
+      body.dark-mode nav,
+      body.dark-mode footer {
+        background: #181929;
+        color: #fff;
+      }
+      body.dark-mode .lang-switch {
+        background: #232330;
+        color: #ffd60a;
+        border: 1px solid #ffd60a;
+      }
+      body.dark-mode .theme-switch {
+        background: #232330;
+        color: #ffd60a;
+      }
+      /* 修正 Hero 內容文字暗色 */
+      body.dark-mode .hero-section p {
+        color: #fff;
+      }
+
+      /* ========== Hero/Banner ========== */
+      .hero-section {
+        min-height: 230px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 48px 16px 48px 16px;
+      }
+      .hero-section .section-title {
+        font-size: 2.2em;
+        font-weight: 700;
+        margin-bottom: 20px;
+        margin-top: 0;
+        letter-spacing: 1px;
+      }
+      .hero-section p {
+        font-size: 1.2em;
+        max-width: 650px;
+        margin: 0 auto 18px auto;
+        line-height: 1.7;
+        color: #222;
+      }
+
+      /* ========== Workflow Slider ========== */
+      .template-marketplace-bar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 10px;
+      }
+      .template-slider-wrapper {
+        overflow-x: auto;
+        scrollbar-width: thin;
+        margin-top: 0;
+      }
+      .template-slider {
+        display: flex;
+        gap: 24px;
+        min-width: 700px;
+        scroll-snap-type: x mandatory;
+        padding-bottom: 8px;
+      }
+      .template-slider .card {
+        min-width: 280px;
+        scroll-snap-align: start;
+        background: #e9ecef;
+        border-radius: 10px;
+        border: none;
+        box-shadow: 0 2px 10px #0001;
+      }
+      .template-slider .cta-btn {
+        background: #2266ff;
+        color: #fff;
+      }
+      .template-marketplace-more {
+        color: #2266ff;
+        font-weight: bold;
+        background: none;
+        border: none;
+        cursor: pointer;
+        font-size: 1em;
+        text-decoration: underline;
+        margin-left: 12px;
+      }
+      .template-slider-arrow {
+        background: #fff;
+        color: #222;
+        border: 1px solid #bbb;
+        border-radius: 50%;
+        width: 36px;
+        height: 36px;
+        font-size: 1.1em;
+        cursor: pointer;
+        position: absolute;
+        z-index: 2;
+        top: 50%;
+        transform: translateY(-50%);
+        box-shadow: 0 2px 10px #0002;
+      }
+      .template-slider-arrow.left {
+        left: 10px;
+      }
+      .template-slider-arrow.right {
+        right: 10px;
+      }
+      .template-slider-outer {
+        position: relative;
+      }
+
+      /* ========== AI 特色區塊 ========== */
+      .ai-features {
+        display: flex;
+        gap: 36px;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        margin-top: 18px;
+      }
+      .feature-card {
+        min-width: 320px;
+        flex: 1 1 32%;
+        background: #f5f7fa;
+        border-radius: 14px;
+        padding: 36px 30px 32px 30px;
+        box-shadow: 0 4px 20px #0001;
+        font-size: 1.12em;
+      }
+      .feature-card h3 {
+        margin-top: 0;
+        margin-bottom: 12px;
+        font-size: 1.22em;
+      }
+      .feature-card ul {
+        margin: 0;
+        padding-left: 18px;
+        line-height: 1.8;
+      }
+
+      /* ========== 募集池專區 ========== */
+      .enterprise-pool-section {
+        border-left: 7px solid #6bc8ff;
+        border-radius: 16px;
+        margin-top: 36px;
+        min-height: 160px;
+        box-shadow: 0 4px 20px #6bc8ff20;
+        background: #f2f6fc; /* 淡藍灰，區隔於黃卡片，亮色用 */
+        /* 刪除 background: #fffbe8; */
+      }
+      .enterprise-pool-title {
+        color: #298fc3;
+      }
+
+      .enterprise-pool-content {
+        display: flex;
+        flex-direction: column;
+        gap: 18px;
+        margin-top: 18px;
+        padding-left: 16px;
+      }
+      .enterprise-feature {
+        background: #fff;
+        color: #2471a3;
+        font-size: 1.13em;
+        padding: 18px 22px;
+        border-radius: 13px;
+        display: flex;
+        align-items: center;
+        box-shadow: 0 2px 8px #99cfff33;
+        margin-bottom: 0;
+        justify-content: space-between;
+        gap: 16px;
+      }
+      .ep-tag {
+        display: inline-block;
+        width: 32px;
+        height: 32px;
+        margin-right: 13px;
+        border-radius: 50%;
+        background: #6bc8ff;
+        color: #fff;
+        font-weight: bold;
+        font-size: 1.1em;
+        text-align: center;
+        line-height: 32px;
+        box-shadow: 0 1px 4px #6bc8ff33;
+      }
+      .ep-btn {
+        padding: 13px 34px;
+        font-size: 1.12em;
+        border: none;
+        border-radius: 8px;
+        background: #298fc3;
+        color: #fff;
+        font-weight: bold;
+        letter-spacing: 2px;
+        cursor: pointer;
+        margin-left: 16px;
+        transition: background 0.2s;
+      }
+      .ep-btn:hover {
+        background: #17609a;
+        color: #fff;
+      }
+      /* 募集池專區暗色模式 */
+      body.dark-mode .enterprise-pool-section {
+        background: #232a39;
+        border-left: 7px solid #3a86ff;
+        box-shadow: 0 4px 20px #3a86ff33;
+      }
+      body.dark-mode .enterprise-pool-title {
+        color: #3a86ff;
+      }
+      body.dark-mode .enterprise-feature {
+        background: #1c2030;
+        color: #91cfff;
+        box-shadow: 0 2px 8px #3a86ff22;
+      }
+      body.dark-mode .ep-tag {
+        background: #3a86ff;
+        color: #fff;
+        box-shadow: 0 1px 4px #3a86ff33;
+      }
+      body.dark-mode .ep-btn {
+        background: #3a86ff;
+        color: #fff;
+      }
+      body.dark-mode .ep-btn:hover {
+        background: #2660a0;
+        color: #fff;
+      }
+
+      /* ========== RWD ========== */
+      @media (max-width: 700px) {
+        .enterprise-pool-content {
+          padding-left: 0;
+        }
+        .enterprise-feature {
+          flex-direction: column;
+          align-items: flex-start;
+          font-size: 1em;
+          padding: 16px 12px;
+        }
+        .ep-btn {
+          margin-left: 0;
+          margin-top: 16px;
+          width: 100%;
+        }
+        .ai-features {
+          flex-direction: column;
+          gap: 18px;
+        }
+        .feature-card {
+          min-width: 0;
+          width: 100%;
+          box-sizing: border-box;
+        }
+        footer div {
+          padding: 0 12px;
+          font-size: 0.98em;
+          line-height: 1.7;
+          word-break: break-all;
+          text-align: center;
+        }
+        footer a {
+          display: inline-block;
+          margin-top: 5px;
+          max-width: 90vw;
+          overflow-wrap: break-word;
+        }
+      }
+
+      header {
+        background: linear-gradient(90deg, #24243e 60%, #24243e 100%);
+        color: #fff;
+        padding: 0;
+        box-shadow: 0 4px 24px #0002;
+      }
+      nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        max-width: 1200px;
+        margin: auto;
+        padding: 0 18px;
+        height: 66px;
+        position: relative;
+      }
+      .brand {
+        display: flex;
+        align-items: center;
+        font-size: 1.35em;
+        gap: 8px;
+        font-weight: bold;
+        letter-spacing: 1px;
+      }
+      .brand-logo {
+        font-size: 1.7em;
+        filter: drop-shadow(0 2px 8px #3a86ff99);
+      }
+
+      .nav-links {
+        list-style: none;
+        display: flex;
+        gap: 32px;
+        margin: 0;
+        padding: 0;
+      }
+      .nav-links li a {
+        color: #fff;
+        text-decoration: none;
+        font-weight: 500;
+        font-size: 1.07em;
+        transition: color 0.16s;
+        position: relative;
+      }
+      .nav-links li a:hover,
+      .nav-links li a:focus {
+        color: #ffd60a;
+      }
+      .nav-links li a::after {
+        content: "";
+        display: block;
+        height: 2.5px;
+        background: #3a86ff;
+        width: 0;
+        transition: width 0.24s;
+        border-radius: 1.5px;
+      }
+      .nav-links li a:hover::after,
+      .nav-links li a:focus::after {
+        width: 100%;
+      }
+
+      .nav-actions {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+      .lang-switch,
+      .theme-switch {
+        padding: 7px 10px;
+        border-radius: 6px;
+        border: 1px solid #3a86ff33;
+        margin-left: 6px;
+        background: #fff;
+        color: #222;
+        font-weight: 500;
+        cursor: pointer;
+      }
+      .theme-switch {
+        background: #ffd60a;
+        color: #333;
+      }
+      .lang-switch {
+        background: #fff;
+        color: #222;
+      }
+      .cta-btn {
+        background: #3a86ff;
+        color: #fff;
+        padding: 10px 24px;
+        border: none;
+        border-radius: 6px;
+        font-weight: bold;
+        margin-left: 10px;
+        cursor: pointer;
+        letter-spacing: 1px;
+        box-shadow: 0 1px 6px #0001;
+        transition: background 0.16s;
+      }
+      .cta-btn:hover {
+        background: #2260bb;
+      }
+
+      /* ===== 漢堡選單（Burger） ===== */
+      .burger {
+        display: none;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        background: none;
+        border: none;
+        width: 44px;
+        height: 44px;
+        cursor: pointer;
+        gap: 4px;
+        margin-left: 10px;
+        z-index: 50;
+      }
+      .burger span {
+        display: block;
+        width: 28px;
+        height: 4px;
+        background: #fff;
+        border-radius: 3px;
+        transition: all 0.3s;
+      }
+      .burger.open span:nth-child(1) {
+        transform: translateY(8px) rotate(45deg);
+      }
+      .burger.open span:nth-child(2) {
+        opacity: 0;
+      }
+      .burger.open span:nth-child(3) {
+        transform: translateY(-8px) rotate(-45deg);
+      }
+
+      footer {
+        width: 100%;
+        box-sizing: border-box;
+        word-break: break-all;
+      }
+
+      /* ====== RWD ====== */
+      @media (max-width: 1000px) {
+        nav {
+          padding: 0 8px;
+        }
+        .nav-links {
+          gap: 18px;
+        }
+      }
+
+      @media (max-width: 820px) {
+        .nav-links,
+        .nav-actions {
+          transition: all 0.25s;
+        }
+        .nav-links {
+          position: absolute;
+          top: 66px;
+          left: 0;
+          right: 0;
+          background: #23243aee;
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 0;
+          z-index: 30;
+          box-shadow: 0 6px 32px #0004;
+          padding: 0;
+          overflow: hidden;
+          max-height: 0;
+          pointer-events: none;
+        }
+        .nav-links li {
+          width: 100%;
+          border-bottom: 1px solid #3a86ff44;
+          margin: 0;
+        }
+        .nav-links li a {
+          display: block;
+          width: 100%;
+          padding: 18px 30px;
+          font-size: 1.11em;
+        }
+        .nav-links.show {
+          max-height: 480px;
+          pointer-events: auto;
+          padding-bottom: 10px;
+        }
+        .nav-actions {
+          display: none;
+          position: absolute;
+          top: calc(66px + 280px);
+          left: 0;
+          width: 100vw;
+          background: #23243aee;
+          flex-direction: column;
+          align-items: flex-start;
+          padding: 12px 30px 20px 30px;
+          z-index: 29;
+        }
+        .nav-actions.show {
+          display: flex;
+        }
+        .burger {
+          display: flex;
+        }
+      }
+
+      /* 適應深色主題 */
+      body.dark-mode header,
+      body.dark-mode nav {
+        background: linear-gradient(90deg, #151526 60%, #151526 100%);
+        color: #fff;
+      }
+      body.dark-mode .nav-links {
+        background: #161631ee;
+      }
+      body.dark-mode .nav-links li a {
+        color: #fff;
+      }
+      body.dark-mode .nav-links li a:hover {
+        color: #ffd60a;
+      }
+      body.dark-mode .nav-actions {
+        background: #161631ee;
+      }
+      body.dark-mode .cta-btn {
+        background: #3a86ff;
+        color: #fff;
+      }
+      body.dark-mode .cta-btn:hover {
+        background: #2260bb;
+      }
+      body.dark-mode .lang-switch,
+      body.dark-mode .theme-switch {
+        background: #232330;
+        color: #ffd60a;
+        border: 1px solid #ffd60a;
+      }
+    </style>
+  </head>
+  <body class="dark-mode">
+    <!-- Header / Nav -->
+    <header>
+      <nav>
+        <div class="brand">
+          <span class="brand-logo"></span>
+          <strong>n8n企業解決方案</strong>
+        </div>
+        <ul class="nav-links">
+          <li><a href="#">首頁</a></li>
+          <li><a href="#">免費模組</a></li>
+          <li><a href="#">高階會員</a></li>
+          <li><a href="#">系統整合</a></li>
+          <li><a href="#">AI 助理</a></li>
+          <li><a href="#">會員中心</a></li>
+        </ul>
+        <div class="nav-actions">
+          <select class="lang-switch" aria-label="語言切換">
+            <option value="zh-TW">繁體中文</option>
+            <option value="en">English</option>
+            <option value="id">Bahasa Indonesia</option>
+            <option value="vi">Tiếng Việt</option>
+            <option value="th">ภาษาไทย</option>
+          </select>
+          <button class="theme-switch" id="toggleTheme" title="切換亮/暗色模式">
+            🌙
+          </button>
+          <button class="cta-btn">登入/註冊</button>
+        </div>
+        <button class="burger" id="burgerBtn" aria-label="展開選單">
+          <span></span><span></span><span></span>
+        </button>
+      </nav>
+    </header>
+
+    <!-- Hero Banner (紅框區) -->
+    <section class="section hero-section">
+      <div class="section-title">自動化讓你事半功倍</div>
+      <p>
+        整合 n8n + AI，批次處理、即時通訊、報表自動寄送，一站式雲端體驗。<br />
+        適用各產業，支援跨平台自動整合、資料轉換、通知提醒、API 批次同步…<br />
+        讓你用最少工時完成最多繁瑣的數位任務，開創自動化新高度！
+      </p>
+      <div class="cta-row">
+        <button class="cta-btn">立即免費體驗</button>
+        <button class="cta-btn" style="background: #ffd60a; color: #333">
+          觀看範例
+        </button>
+      </div>
+    </section>
+
+    <!-- 解決痛點區 -->
+    <section class="section">
+      <div class="section-title">解決你日常的煩惱</div>
+      <div class="painpoints">
+        <div class="card">🔄 重複抄表/搬資料好浪費時間</div>
+        <div class="card">📧 報表每月自動寄送，不怕忘記</div>
+        <div class="card">📲 LINE/Telegram 即時通知</div>
+        <div class="card">🧑‍💼 一站整合 AI + CRM + 企業內部系統</div>
+      </div>
+    </section>
+
+    <!-- 免費市集 (綠框區 + Slider) -->
+    <section class="section">
+      <div class="template-marketplace-bar">
+        <div class="section-title" style="margin-bottom: 0">免費市集</div>
+        <button
+          class="template-marketplace-more"
+          onclick="window.location.href='https://n8n.io/workflows'"
+        >
+          更多 &gt;
+        </button>
+      </div>
+      <input
+        style="width: 220px; padding: 8px; margin-bottom: 16px"
+        type="text"
+        placeholder="搜尋 workflow..."
+      />
+      <div class="template-slider-outer">
+        <div class="template-slider-wrapper">
+          <div class="template-slider" id="templateSlider">
+            <div class="card template-card">
+              <strong>Gmail → Google Sheet 自動歸檔</strong><br />
+              作者: 小明 <br />
+              <button class="cta-btn" style="margin: 10px 0 0 0">
+                立即下載
+              </button>
+            </div>
+            <div class="card template-card">
+              <strong>AI 批次文字轉語音</strong><br />
+              作者: AI大師 <br />
+              <button class="cta-btn" style="margin: 10px 0 0 0">
+                立即下載
+              </button>
+            </div>
+            <div class="card template-card">
+              <strong>OCR 掃描發票 → 寄信</strong><br />
+              作者: Mr. Flow <br />
+              <button class="cta-btn" style="margin: 10px 0 0 0">
+                立即下載
+              </button>
+            </div>
+            <div class="card template-card">
+              <strong>Google 表單自動 LINE 通知</strong><br />
+              作者: FlowMaker<br />
+              <button class="cta-btn" style="margin: 10px 0 0 0">
+                立即下載
+              </button>
+            </div>
+            <div class="card template-card">
+              <strong>PDF 轉文字並 Email 給主管</strong><br />
+              作者: 小花<br />
+              <button class="cta-btn" style="margin: 10px 0 0 0">
+                立即下載
+              </button>
+            </div>
+          </div>
+        </div>
+        <!-- 左右滑動箭頭 -->
+        <button class="template-slider-arrow left" onclick="sliderScroll(-1)">
+          &#8592;
+        </button>
+        <button class="template-slider-arrow right" onclick="sliderScroll(1)">
+          &#8594;
+        </button>
+      </div>
+    </section>
+
+    <!-- AI 特色說明新區塊 -->
+    <section class="section ai-features-section" style="min-height: 340px">
+      <div class="section-title">智能產品</div>
+      <div class="ai-features">
+        <!-- 1. 用戶成效追蹤模組 -->
+        <div class="card feature-card">
+          <h3>
+            📊 用戶成效追蹤模組
+            <span style="font-size: 0.7em; color: #888">（提升轉換率）</span>
+          </h3>
+          <ul>
+            <li>Flow 使用統計：啟動次數、成功率、錯誤率等數據一覽</li>
+            <li>回饋表單整合，主動蒐集用戶滿意度</li>
+            <li>自動產生使用週報通知寄送給用戶</li>
+            <li>協助建立「模組成效證明」來促進轉化</li>
+          </ul>
+        </div>
+        <!-- 2. 客製顧問服務 -->
+        <div class="card feature-card">
+          <h3>🧑‍💼 客製顧問服務</h3>
+          <ul>
+            <li>線上預約技術諮詢，量身打造自動化方案</li>
+            <li>企業專屬診斷評估、協作說明</li>
+            <li>報價與合作流程清晰透明</li>
+            <li>豐富案例展示，學習標竿企業的最佳實踐</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- 高階會員專區 -->
+    <section class="section">
+      <div class="section-title">高階會員方案</div>
+      <div class="memberships">
+        <div class="card pricing-card">
+          <strong>進階會員</strong><br />
+          月付 $199<br />
+          - CRM 自動同步<br />
+          - 進階 API 控制<br />
+          - 客戶成功專員<br />
+          <button class="cta-btn" style="margin-top: 10px">升級方案</button>
+        </div>
+        <div class="card pricing-card">
+          <strong>企業版</strong><br />
+          月付 $599<br />
+          - 客製流程整合<br />
+          - 團隊/權限管理<br />
+          - 專屬技術顧問<br />
+          <button class="cta-btn" style="margin-top: 10px">聯絡諮詢</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- 企業模組需求募集池 區塊 -->
+    <section class="section enterprise-pool-section">
+      <div class="section-title enterprise-pool-title">
+        企業「模組需求募集池」
+      </div>
+      <div class="enterprise-pool-content">
+        <div class="enterprise-feature">
+          <span class="ep-tag">1</span>
+          開放社群投票（參考 Canny、Upvoty 模式）
+          <button class="ep-btn">我要投票</button>
+        </div>
+        <div class="enterprise-feature">
+          <span class="ep-tag">2</span>
+          支援「預約合作」：允許企業出資優先開發
+          <button class="ep-btn">洽詢合作</button>
+        </div>
+        <div class="enterprise-feature">
+          <span class="ep-tag">3</span>
+          預刪「專案開發候補清單」→ 帶動收費機會
+          <button class="ep-btn">查看詳情</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- 客服/FAQ -->
+    <section class="section">
+      <div class="section-title">常見問題與客服</div>
+      <div class="faq">
+        <div class="card">Q：如何開始？<br />A：註冊後依步驟選擇模板即可。</div>
+        <div class="card">
+          Q：有企業專案協助嗎？<br />A：高階會員可預約技術顧問。
+        </div>
+        <div class="card">
+          Q：付款方式有哪些？<br />A：支援信用卡、發票開立。
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+      <div>
+        © 2024 n8n 應用型自動化平台 ｜
+        <a style="color: #ffd60a" href="#">API文件</a> ｜
+        <a style="color: #ffd60a" href="#">隱私政策</a>
+      </div>
+    </footer>
+    <script>
+      // 亮/暗色主題切換
+      const themeBtn = document.getElementById("toggleTheme");
+      themeBtn.onclick = function () {
+        document.body.classList.toggle("dark-mode");
+        themeBtn.textContent = document.body.classList.contains("dark-mode")
+          ? "🌞"
+          : "🌙";
+      };
+      // 語言切換功能
+      document
+        .querySelector(".lang-switch")
+        .addEventListener("change", function (e) {
+          alert(
+            "切換語言為: " +
+              e.target.options[e.target.selectedIndex].text +
+              "\n（示意，請串接 i18n）"
+          );
+        });
+
+      // Slider 滑動控制
+      function sliderScroll(dir) {
+        const el = document.getElementById("templateSlider");
+        const wrapper = el.parentElement;
+        const scrollAmount = 320;
+        wrapper.scrollBy({ left: dir * scrollAmount, behavior: "smooth" });
+      }
+
+      const burgerBtn = document.getElementById("burgerBtn");
+      const navLinks = document.querySelector(".nav-links");
+      const navActions = document.querySelector(".nav-actions");
+
+      burgerBtn.onclick = function () {
+        burgerBtn.classList.toggle("open");
+        navLinks.classList.toggle("show");
+        navActions.classList.toggle("show");
+      };
+      // 關閉選單（可選，點連結自動收起）
+      document.querySelectorAll(".nav-links a").forEach((el) => {
+        el.onclick = () => {
+          if (window.innerWidth <= 820) {
+            burgerBtn.classList.remove("open");
+            navLinks.classList.remove("show");
+            navActions.classList.remove("show");
+          }
+        };
+      });
+    </script>
+  </body>
+</html>
